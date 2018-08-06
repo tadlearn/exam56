@@ -12,7 +12,7 @@
  */
 
 Route::get('/', function () {
-    $name = 'Tad';
+    $name = '<u>Tad</u>';
     $say  = '嗨！';
 
     return view('welcome', compact('name', 'say'));
