@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -34,7 +35,15 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:2|max:191',
+        ], [
+            'required' => '「:attribute」為必填欄位',
+            'min'      => '「:attribute」至少要 :min 個字',
+            'max'      => '「:attribute」最多只能 :max 個字',
+        ]);
+        Exam::create($request->all());
+        return redirect()->route('exam.index');
     }
 
     /**
