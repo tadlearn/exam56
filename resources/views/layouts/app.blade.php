@@ -28,6 +28,13 @@
         <main class="py-4">
             <div class="container">
                 @yield('content')
+
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
             </div>
         </main>
     </div>
