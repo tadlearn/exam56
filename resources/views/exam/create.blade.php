@@ -22,7 +22,7 @@
                     ->inline())
                 ->showAsRow() }}
 
-{{ bs()->hidden('user_id', Auth::id()) }}
+            {{ bs()->hidden('user_id', Auth::id()) }}
 
             {{ bs()->formGroup()
                 ->label('', false, 'text-sm-right')
