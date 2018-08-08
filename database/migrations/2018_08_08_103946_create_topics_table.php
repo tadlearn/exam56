@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTopicsTable extends Migration
 {
@@ -15,6 +15,14 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('topic');
+            $table->unsignedInteger('exam_id');
+            $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
+            $table->string('opt1');
+            $table->string('opt2');
+            $table->string('opt3');
+            $table->string('opt4');
+            $table->unsignedTinyInteger('ans');
             $table->timestamps();
         });
     }
