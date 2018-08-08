@@ -1,8 +1,7 @@
 @extends('layouts.app') 
 
-
 @section('content')
-    <h1>隨機題庫系統</h1>
+    <h1>隨機題庫系統<small>（共 {{$exams->total()}} 筆資料）</small></h1>
 
     <div class="list-group">      
 
@@ -18,5 +17,7 @@
         @endforelse
 
     </div>
-
+    <div class="mt-3">
+        {{ $exams->links() }}
+    </div>
 @endsection
