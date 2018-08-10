@@ -58,6 +58,13 @@ class ExamController extends Controller
      */
     public function show(Exam $exam)
     {
+
+        if (Auth::check() and Auth::user()->can('進行測驗')) {
+            $show_num = 6;
+            if ($exam->topics->count() > $show_num) {
+                $exam->topics = $exam->topics->random($show_num);
+            }
+        }
         return view('exam.show', compact('exam'));
     }
 

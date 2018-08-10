@@ -18,6 +18,12 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
+                        <form action="/auth/login/openid" method="post" style="display:inline">
+                            @csrf
+                            <button class="btn btn-link">新北市 OpenID 登入</button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     <li class="nav-item">

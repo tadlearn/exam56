@@ -15,10 +15,30 @@
     @endcan
 
     {{-- 題目列表 --}}
-    @include('exam.topic');
+    @if(Auth::check())
+        @can('進行測驗')
+
+            {{ bs()->openForm('post', '/test') }}
+
+            @include('exam.topic');
+            
+            {{ bs()->hidden('exam_id', $exam->id) }}
+            {{ bs()->hidden('user_id', Auth::id()) }}
+            <div class="text-center my-5">
+                {{ bs()->submit('交卷')->sizeLarge() }}
+            </div>
+            {{ bs()->closeForm() }}
+        @else        
+            @include('exam.topic');
+        @endcan
+    @else
+        <div class="alert alert-info">
+            <h3>本測驗共有 {{ $exam->topics->count() }} 題，登入後始能進行測驗或編輯題目</h3>
+        </div>
+    @endif    
     
     <div class="text-center">
-        發佈於 {{ $exam->created_at->format("Y年m月d日 H:i:s") }} / 最後更新： {{ $exam->updated_at->format("Y年m月d日 H:i:s") }}
+        {{ $exam->user->name }} ({{ $exam->user->email }}) 發佈於 {{ $exam->created_at->format("Y年m月d日 H:i:s") }} / 最後更新： {{ $exam->updated_at->format("Y年m月d日 H:i:s") }}
     </div>
 @endsection
 
